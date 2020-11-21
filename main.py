@@ -15,7 +15,7 @@ def get_message_text():
                 float(currency["Value"]),
                 currency["difference"],
             )
-    msg += "\n<a href='https://www.cbar.az/currency/rates'><i>tam siyahı...</i></a>"
+    msg += "\n<a href='https://www.cbar.az/currency/rates'><i>tam siyahıya keçid</i></a>"
     return msg
 
 
