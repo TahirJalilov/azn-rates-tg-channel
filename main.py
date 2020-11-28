@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+from typing import Union
 from bot import post_message
 from cbar import cbar_data_with_difference
 
 
-def get_message_text():
+def get_message_text() -> Union[str, bool]:
     cbar_data = cbar_data_with_difference()
-    currency_date = cbar_data["ValCurs"]["@Date"]
+    try:
+        currency_date = cbar_data["ValCurs"]["@Date"]
+    except TypeError:
+        return False
     msg = f"{currency_date} tarixindən etibarən"
     for currency in cbar_data["ValCurs"]["ValType"][1]["Valute"]:
         if currency["@Code"] in ("USD", "EUR", "GEL", "GBP", "RUB", "TRY"):
@@ -21,7 +25,8 @@ def get_message_text():
 
 def main():
     msg = get_message_text()
-    post_message(msg)
+    if msg:
+        post_message(msg)
 
 
 if __name__ == "__main__":
