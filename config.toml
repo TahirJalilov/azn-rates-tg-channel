@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+
+[channel]
+name = '@AZNrates'
+
+[bot]
+token = ''
