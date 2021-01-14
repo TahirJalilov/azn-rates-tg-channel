@@ -27,7 +27,8 @@ def generate_message() -> Union[str, bool]:
                 float(currency['Value']),
                 currency['diff'],
             )
-    msg += '\n<a href="https://www.cbar.az/currency/rates"><i>tam siyahıya keçid</i></a>'
+    msg += '\n<a href="https://www.cbar.az/currency/rates?date={0}">' \
+           '<i>tam siyahıya keçid</i></a>'.format(rates_date.replace('.', '/'))
     return msg
 
 

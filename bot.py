@@ -6,6 +6,7 @@ import toml
 
 config = toml.load('config.toml')
 token = config['bot']['token']
+channel = config['channel']['name']
 
 
 def send_message(text: str) -> None:
@@ -17,7 +18,7 @@ def send_message(text: str) -> None:
     requests.get(
         'https://api.telegram.org/bot{0}/sendMessage'.format(token),
         params={
-            'chat_id': config['channel']['name'],
+            'chat_id': channel,
             'text': text,
             'parse_mode': 'HTML',
             'disable_web_page_preview': True,
