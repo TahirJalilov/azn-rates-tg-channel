@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-[channel]
-name = '@AZNrates'
+[channels]
+name = ['@AZNrates', '@mezenne']
 
 [bot]
 token = ''
