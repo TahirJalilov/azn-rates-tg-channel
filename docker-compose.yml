@@ -1,0 +1,21 @@
+version: "3.7"
+
+#networks:
+#  postgres_db_bots_net:
+#    external: true
+#    driver: bridge
+
+services:
+
+  aznrates:
+    container_name: aznrates
+    build:
+      context: .
+    restart: always
+    volumes:
+      - .:/src
+#    networks:
+#      - postgres_db_bots_net
+    env_file: .env
+    # depends_on:
+      # - db
