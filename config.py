@@ -9,4 +9,4 @@ load_dotenv()
 
 BOT_TOKEN: str = os.getenv('BOT_TOKEN')
 ADMINS: list = list(map(int, os.getenv('ADMINS').split(',')))
-TG_CHANNELS: list = list(map(int, os.getenv('TG_CHANNELS').split(',')))
+TG_CHANNELS: list = os.getenv('TG_CHANNELS').split(',')
