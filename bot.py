@@ -10,7 +10,7 @@ def send_message(text: str) -> None:
     """Send message to the channel.
 
     Args:
-        text: text of message
+        text: text for message.
     """
     for chat_id in TG_CHANNELS:
         requests.get(
