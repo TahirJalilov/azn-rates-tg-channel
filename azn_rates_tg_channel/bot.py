@@ -3,7 +3,7 @@
 
 import requests
 
-from config import BOT_TOKEN, TG_CHANNELS
+from azn_rates_tg_channel.config import BOT_TOKEN, TG_CHANNELS
 
 
 def send_message(text: str) -> None:
