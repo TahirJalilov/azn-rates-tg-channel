@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "azn-rates-tg-channel"
+version = "0.1.0"
+description = ""
+authors = ["Tahir Jalilov <tahir.jalilov@gmail.com>"]
+
+repository = "https://github.com/TahirJalilov/azn-rates-tg-channel"
+
+[tool.poetry.scripts]
+main-script = "azn_rates_tg_channel.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.26.0"
+xmltodict = "^0.12.0"
+python-dotenv = "^0.19.2"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+pylint = "^2.12.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
