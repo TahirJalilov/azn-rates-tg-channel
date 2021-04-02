@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Main module."""
 
+import time
 from typing import Union
 
 from azn_rates_tg_channel.bot import send_message
@@ -34,9 +35,12 @@ def generate_message() -> Union[str, bool]:
 
 def main():
     """Run main functionality."""
-    msg = generate_message()
-    if msg:
-        send_message(msg)
+    for i in range(15):
+        msg = generate_message()
+        if not msg:
+            send_message(msg)
+            break
+        time.sleep(60)
 
 
 if __name__ == '__main__':
