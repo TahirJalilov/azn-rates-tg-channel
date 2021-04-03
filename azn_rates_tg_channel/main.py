@@ -35,9 +35,9 @@ def generate_message() -> Union[str, bool]:
 
 def main():
     """Run main functionality."""
-    for i in range(15):
+    for i in range(20):
         msg = generate_message()
-        if not msg:
+        if msg:
             send_message(msg)
             break
         time.sleep(60)
