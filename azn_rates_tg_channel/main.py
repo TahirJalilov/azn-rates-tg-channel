@@ -35,11 +35,7 @@ def generate_message() -> Union[str, bool]:
 
 def main():
     """Run main functionality."""
-<<<<<<< HEAD
-    for i in range(20):
-=======
     for _ in range(20):
->>>>>>> 12dab75 (small fixes)
         msg = generate_message()
         if msg:
             send_message(msg)
