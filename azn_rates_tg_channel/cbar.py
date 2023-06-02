@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module for work with rates xml."""
 
 from datetime import datetime, timedelta
@@ -15,14 +14,12 @@ def _get_xml_with_rates(date: datetime) -> Union[str, bool]:
         date: date of rates
 
     Returns:
-        xml file as a text or False
+        xml file as text or False
     """
     response = requests.get(
-        'https://www.cbar.az/currencies/{0}.xml'.format(
-            date.strftime('%d.%m.%Y'),
-        ),
+        f"https://www.cbar.az/currencies/{date.strftime('%d.%m.%Y')}.xml",
     )
-    if not response.text.startswith('<?xml'):
+    if not response.text.startswith("<?xml"):
         return False
     return response.text
 
@@ -42,7 +39,7 @@ def currency_rates_by_date(date: datetime) -> Union[dict, bool]:
     except TypeError:
         return False
     else:
-        return currency_rates['ValCurs']
+        return currency_rates["ValCurs"]
 
 
 def currency_rates_with_diff() -> Union[dict, bool]:
@@ -55,12 +52,12 @@ def currency_rates_with_diff() -> Union[dict, bool]:
     rates_yesterday = currency_rates_by_date(
         datetime.today() - timedelta(days=1),
     )
-    if rates_today['@Date'] == rates_yesterday['@Date']:
+    if rates_today["@Date"] == rates_yesterday["@Date"]:
         return False
     for rates in zip(
-        rates_today['ValType'][1]['Valute'],
-        rates_yesterday['ValType'][1]['Valute'],
+        rates_today["ValType"][1]["Valute"],
+        rates_yesterday["ValType"][1]["Valute"],
     ):
-        rates[0]['diff'] = float(rates[0]['Value']) - float(rates[1]['Value'])
+        rates[0]["diff"] = float(rates[0]["Value"]) - float(rates[1]["Value"])
 
     return rates_today

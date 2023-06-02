@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Module for working with bot."""
 
 import requests
@@ -14,11 +13,11 @@ def send_message(text: str) -> None:
     """
     for chat_id in TG_CHANNELS:
         requests.get(
-            'https://api.telegram.org/bot{0}/sendMessage'.format(BOT_TOKEN),
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
             params={
-                'chat_id': chat_id,
-                'text': text,
-                'parse_mode': 'HTML',
-                'disable_web_page_preview': True,
+                "chat_id": chat_id,
+                "text": text,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": True,
             },
         )
