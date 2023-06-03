@@ -3,8 +3,8 @@
 import time
 from typing import Union
 
-from azn_rates_tg_channel.bot import send_message
-from azn_rates_tg_channel.cbar import currency_rates_with_diff
+from bot import send_message
+from cbar import currency_rates_with_diff
 
 
 def generate_message() -> Union[str, bool]:
