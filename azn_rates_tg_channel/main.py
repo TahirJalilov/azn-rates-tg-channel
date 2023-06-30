@@ -1,48 +1,44 @@
 """Main module."""
 
 import time
-from typing import Union
+
+from datetime import date, timedelta
 
 from bot import send_message
-from cbar import currency_rates_with_diff
+import cbar
 
 
-def generate_message() -> Union[str, bool]:
-    """Generate message for telegram channel.
+def generate_post_text(rates) -> str:
+    """Generate post text for telegram channel.
 
     Returns:
-        msg: generated message text
+        text: generated post text
     """
-    rates = currency_rates_with_diff()
-    try:
-        rates_date = rates["@Date"]
-    except TypeError:
-        return False
-    msg = f"<u>{rates_date}</u> tarixindən etibarən:"
+    text = f"<u>{rates['@Date']}</u> tarixindən etibarən:"
     for currency in rates["ValType"][1]["Valute"]:
         if currency["@Code"] in {"USD", "EUR", "GEL", "GBP", "RUB", "TRY"}:
-            msg += "\n<pre>{0} {1} = {2:.4f} AZN ({3:+.4f})</pre>".format(
+            text += "\n<pre>{0} {1} = {2:.4f} AZN ({3:+.4f})</pre>".format(
                 currency["Nominal"],
                 currency["@Code"],
                 float(currency["Value"]),
                 currency["diff"],
             )
-    msg += (
+    text += (
         '\n<a href="https://www.cbar.az/currency/rates?date={0}">'
-        "<i>tam siyahıya keçid</i></a>".format(rates_date.replace(".", "/"))
+        "<i>tam siyahıya keçid</i></a>".format(rates['@Date'].replace(".", "/"))
     )
-    return msg
-
-
-def main():
-    """Run main functionality."""
-    for _ in range(20):
-        msg = generate_message()
-        if msg:
-            send_message(msg)
-            break
-        time.sleep(60)
+    return text
 
 
 if __name__ == "__main__":
-    main()
+    for _ in range(20):
+        rates_today = cbar.currency_rates_by_date(date.today())
+        rates_yesterday = cbar.currency_rates_by_date(date.today() - timedelta(days=1))
+        if rates_today == rates_yesterday:
+            time.sleep(60)
+            continue
+        else:
+            currency_rates = cbar.currency_rates_with_diff(rates_today, rates_yesterday)
+            post_text = generate_post_text(currency_rates)
+            send_message(post_text)
+            break
