@@ -1,3 +1,5 @@
-requests
-xmltodict
 python-dotenv
+pytz
+requests
+schedule
+xmltodict

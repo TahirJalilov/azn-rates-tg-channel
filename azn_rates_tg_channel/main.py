@@ -1,11 +1,12 @@
 """Main module."""
 
+import schedule
 import time
 
 from datetime import date, timedelta
 
-from bot import send_message
 import cbar
+from bot import send_message
 
 
 def generate_post_text(rates) -> str:
@@ -30,7 +31,7 @@ def generate_post_text(rates) -> str:
     return text
 
 
-if __name__ == "__main__":
+def main():
     for _ in range(20):
         rates_today = cbar.currency_rates_by_date(date.today())
         rates_yesterday = cbar.currency_rates_by_date(date.today() - timedelta(days=1))
@@ -42,3 +43,11 @@ if __name__ == "__main__":
             post_text = generate_post_text(currency_rates)
             send_message(post_text)
             break
+
+
+if __name__ == "__main__":
+    schedule.every().day.at("09:05", "Asia/Baku").do(main)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
