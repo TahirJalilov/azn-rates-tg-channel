@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  azn-rates:
+    container_name: azn-rates
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=100
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - .:/src
+    env_file: .env
+#    command: bash -c "cron && python /src/main.py"
