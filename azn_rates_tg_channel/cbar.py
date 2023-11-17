@@ -15,14 +15,13 @@ def currency_rates_by_date(rates_date: date) -> dict | bool:
     Returns:
         dict with rates or False
     """
-    response = requests.get(
-        f"https://www.cbar.az/currencies/{rates_date.strftime('%d.%m.%Y')}.xml",
-    )
     try:
-        currency_rates = xmltodict.parse(response.text)["ValCurs"]
-    except Exception as error:
-        print(error)
+        response = requests.get(
+            f"https://cbar.az/currencies/{rates_date.strftime('%d.%m.%Y')}.xml",
+        )
+    except requests.exceptions.ConnectionError:
         return False
+    currency_rates = xmltodict.parse(response.text)["ValCurs"]
     return currency_rates
 
 
