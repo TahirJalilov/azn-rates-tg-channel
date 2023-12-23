@@ -12,5 +12,5 @@ services:
       - no-new-privileges:true
     volumes:
       - .:/src
-    env_file: .env
+#    env_file: .env
 #    command: bash -c "cron && python /src/main.py"
