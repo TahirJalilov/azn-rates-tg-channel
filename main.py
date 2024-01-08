@@ -5,8 +5,8 @@ import time
 
 from datetime import date, timedelta
 
-import cbar
-from bot import send_message
+from azn_rates_tg_channel import cbar
+from azn_rates_tg_channel.bot import send_message
 
 
 def generate_post_text(rates) -> str:

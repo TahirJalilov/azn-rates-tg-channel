@@ -2,7 +2,7 @@
 
 import requests
 
-from config import BOT_TOKEN, TG_CHANNELS
+from .config import BOT_TOKEN, TG_CHANNELS
 
 
 def send_message(text: str) -> None:
