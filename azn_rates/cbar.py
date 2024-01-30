@@ -1,4 +1,4 @@
-"""Module for work with rates xml."""
+"""Module for working with rates xml."""
 
 from datetime import date
 
@@ -21,6 +21,7 @@ def currency_rates_by_date(rates_date: date) -> dict | bool:
         )
     except requests.exceptions.ConnectionError:
         return False
+
     currency_rates = xmltodict.parse(response.text)["ValCurs"]
     return currency_rates
 
