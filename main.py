@@ -18,7 +18,7 @@ def generate_post_text(rates) -> str:
     text = f"<u>{rates['@Date']}</u> tarixindən etibarən:"
     for currency in rates["ValType"][1]["Valute"]:
         if currency["@Code"] in {"USD", "EUR", "GEL", "GBP", "RUB", "TRY"}:
-            text += "\n<pre>{0} {1} = {2:.4f} AZN ({3:+.4f})</pre>".format(
+            text += "\n<code>{0} {1} = {2:.4f} AZN ({3:+.4f})</code>".format(
                 currency["Nominal"],
                 currency["@Code"],
                 float(currency["Value"]),
